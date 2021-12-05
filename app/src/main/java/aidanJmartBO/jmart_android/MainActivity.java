@@ -1,23 +1,17 @@
 package aidanJmartBO.jmart_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
-
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,7 +21,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -39,22 +32,20 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     private static final Gson gson = new Gson();
     MyRecyclerViewAdapter adapter;
     private TabLayout mainTabLayout;
-    //CardView Product
     private CardView cv_product;
     private Button buttonPrev;
     private Button buttonNext;
     private Button buttonGo;
     private EditText et_page;
     private int page;
-    //CardView Filter
     private CardView cv_filter;
-    private EditText et_productName;
-    private EditText et_lowestPrice;
-    private EditText et_highestPrice;
-    private CheckBox cb_new;
-    private CheckBox cb_used;
-    private Button btnApply;
-    private Button btnClear;
+    private EditText inputProductName;
+    private EditText inputLowestPrice;
+    private EditText inputHighestPrice;
+    private CheckBox checkNew;
+    private CheckBox checkUsed;
+    private Button buttonApply;
+    private Button buttonClear;
     private Spinner spinner_filterCategory;
 
     @Override
@@ -66,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         mainTabLayout = findViewById(R.id.mainTabLayout);
         cv_product = findViewById(R.id.cv_product);
         cv_filter = findViewById(R.id.cv_filter);
-        //Tab Selector Listener
         mainTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -102,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         adapter = new MyRecyclerViewAdapter(this, productNames);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)); //Add divider to each row
         buttonPrev = findViewById(R.id.btnPrev);
         buttonNext = findViewById(R.id.buttonNext);
         buttonGo = findViewById(R.id.buttonGo);
@@ -132,43 +122,43 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
             }
         });
         //Filter CardView
-        et_productName = findViewById(R.id.et_productName);
-        et_lowestPrice = findViewById(R.id.et_lowestPrice);
-        et_highestPrice = findViewById(R.id.et_highestPrice);
+        inputProductName = findViewById(R.id.et_productName);
+        inputLowestPrice = findViewById(R.id.et_lowestPrice);
+        inputHighestPrice = findViewById(R.id.et_highestPrice);
         spinner_filterCategory = findViewById(R.id.spinner_filterCategory);
-        cb_new = findViewById(R.id.cb_new);
-        cb_used = findViewById(R.id.cb_used);
+        checkNew = findViewById(R.id.cb_new);
+        checkUsed = findViewById(R.id.cb_used);
         String checkCondition;
-        if(cb_new.isChecked()){
-            checkCondition = cb_new.getText().toString();
+        if(checkNew.isChecked()){
+            checkCondition = checkNew.getText().toString();
         }
-        if(cb_used.isChecked()){
-            checkCondition = cb_used.getText().toString();
+        if(checkUsed.isChecked()){
+            checkCondition = checkUsed.getText().toString();
         }
-        btnApply = findViewById(R.id.btnApply);
-        btnApply.setOnClickListener(new View.OnClickListener() {
+        buttonApply = findViewById(R.id.btnApply);
+        buttonApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String productName = et_productName.getText().toString();
-                String lowestPrice= et_lowestPrice.getText().toString();
-                String highestPrice = et_highestPrice.getText().toString();
+                String productName = inputProductName.getText().toString();
+                String lowestPrice= inputLowestPrice.getText().toString();
+                String highestPrice = inputHighestPrice.getText().toString();
                 String category = spinner_filterCategory.getSelectedItem().toString();
-                StringRequest filterRequest = new StringRequest(Request.Method.GET, "http://10.0.2.2:8080/product/getFiltered?pageSize=10&accountId="+LoginActivity.getLoggedAccount().id+"&search="+productName+"&minPrice="+lowestPrice+"&maxPrice="+highestPrice+"&category="+category, new Response.Listener<String>() {
+                StringRequest filterRequest = new StringRequest(Request.Method.GET, "http://192.168.0.9:8080/product/getFiltered?pageSize=10&accountId="+LoginActivity.getLoggedAccount().id+"&search="+productName+"&minPrice="+lowestPrice+"&maxPrice="+highestPrice+"&category="+category, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JsonReader reader = new JsonReader(new StringReader(response)); //Use reader to read json response of filtered products
+                        JsonReader reader = new JsonReader(new StringReader(response));
                         try {
-                            productNames.clear();                                       //Clear the previous list
+                            productNames.clear();
                             reader.beginArray();
                             while(reader.hasNext()){
-                                productNames.add(gson.fromJson(reader, Product.class)); //Add the products from reader to the arraylist
+                                productNames.add(gson.fromJson(reader, Product.class));
                             }
-                            adapter.refresh(productNames);                              //Refresh/update displaying the list
+                            adapter.refresh(productNames);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "Filter product unsuccessful, error occurred", Toast.LENGTH_LONG).show();
                         }
-                        //After filtering, move back to display the product tab (set product visible, set Filter invisible)
+
                         cv_product.setVisibility(View.VISIBLE);
                         cv_filter.setVisibility(View.INVISIBLE);
                         Toast.makeText(getApplicationContext(), "Filtering Succesful", Toast.LENGTH_LONG).show();
@@ -182,24 +172,22 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 queue.add(filterRequest);
             }
         });
-        //Clear the input fields
-        btnClear = findViewById(R.id.btnClear);
-        btnClear.setOnClickListener(new View.OnClickListener() {
+        buttonClear = findViewById(R.id.btnClear);
+        buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Testing Clear", Toast.LENGTH_SHORT).show();
-                et_productName.setText("");
-                et_lowestPrice.setText("");
-                et_highestPrice.setText("");
-                cb_new.setChecked(false);
-                cb_used.setChecked(false);
+                inputProductName.setText("");
+                inputLowestPrice.setText("");
+                inputHighestPrice.setText("");
+                checkNew.setChecked(false);
+                checkUsed.setChecked(false);
                 spinner_filterCategory.setSelection(0);
             }
         });
     }
-    //Fetch Products Request Method
     public void fetchProduct(List<Product> productNames, int page, RequestQueue queue, boolean refreshAdapter){
-        StringRequest fetchProductsRequest = new StringRequest(Request.Method.GET, "http://192.168.100.6:8080/product/page?page="+page+"&pageSize=10", new Response.Listener<String>() {
+        StringRequest fetchProductsRequest = new StringRequest(Request.Method.GET, "http://192.168.10.119:8080/product/page?page="+page+"&pageSize=10", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JsonReader reader = new JsonReader(new StringReader(response));
@@ -225,39 +213,36 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         });
         queue.add(fetchProductsRequest);
     }
-    //RecycleView Item ClickListener
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(getApplicationContext(), "Testing click product", Toast.LENGTH_LONG).show();
     }
-    //Menu
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_search:
+                return true;
+            case R.id.menu_add:
+                startActivity(new Intent(this, CreateProductActivity.class));
+                return true;
+            case R.id.menu_aboutme:
+                startActivity(new Intent(this, AboutMeActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //Inflate with the menu created in menu_main
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        //Check if account has no store yet, dont display the add product menu item
         if(LoginActivity.getLoggedAccount().store == null){
             menu.getItem(1).setVisible(false);
         }
         return true;
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        int id = item.getItemId();
-        if(id == R.id.menu_aboutme) {
-            Intent intent = new Intent(this, AboutMeActivity.class);
-            this.startActivity(intent);
-            return true;
-        }
-        else if(id == R.id.menu_add) {
-            Intent intent = new Intent(this, CreateProductActivity.class);
-            this.startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
 }
