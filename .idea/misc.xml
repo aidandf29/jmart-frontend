@@ -11,6 +11,24 @@
         <entry key="..\:/Users/aidan/AndroidStudioProjects/jmartandroid/app/src/main/res/layout/fragment_product.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/aidan/AndroidStudioProjects/jmartandroid/app/src/main/res/layout/recyclerview_row.xml" value="0.1033434650455927" />
         <entry key="..\:/Users/aidan/AndroidStudioProjects/jmartandroid/app/src/main/res/menu/menu_main.xml" value="0.1033434650455927" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/drawable/ic_search_black_24dp.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_about_me.xml" value="0.264" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_create_product.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_invoice.xml" value="0.20153985507246377" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_invoice_history.xml" value="0.35511363636363635" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_login.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_main.xml" value="0.19384057971014493" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_payment.xml" value="0.264" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_product_detail.xml" value="0.4" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/activity_register.xml" value="0.2391304347826087" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/recyclerview_row.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/recyclerview_row2.xml" value="0.4" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/recyclerview_row_trans.xml" value="0.18885869565217392" />
+        <entry key="..\:/Users/aidan/Documents/nguliah/smt 5/OOP/aidan-jmart/app/src/main/res/layout/recyclerview_rowtransactions.xml" value="0.4" />
       </map>
     </option>
   </component>

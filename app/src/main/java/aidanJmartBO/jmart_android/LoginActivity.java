@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         password = (EditText) findViewById(R.id.passwordInput);
         button_Login = (Button) findViewById(R.id.Login);
 
-        emailText.setText("aidandf@gmail.com");
+        emailText.setText("aidandaffa29@gmail.com");
         password.setText("Aidan123");
 
         register.setOnClickListener(new View.OnClickListener(){
@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 Toast.makeText(getApplicationContext(),
-                                        "Terdapat kesalahan sistem", Toast.LENGTH_SHORT).show();
+                                        "Terdapat kesalahan pada sistem", Toast.LENGTH_SHORT).show();
                             }
                         }
                 );
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
     @Override
     public void onErrorResponse(VolleyError error) {
         Intent intent = new Intent(this, MainActivity.class);
-        Toast.makeText(this, "Error!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Error :(", Toast.LENGTH_LONG).show();
         startActivity(intent);
     }
 

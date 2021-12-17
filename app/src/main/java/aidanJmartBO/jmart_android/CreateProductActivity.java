@@ -16,7 +16,7 @@ import android.widget.EditText;
 
 
 public class CreateProductActivity extends AppCompatActivity {
-    private Button btnCreateProduct, btnCancelProduct;
+    private Button buttonCreateProduct, buttonCancelProduct;
     private EditText et_createProductName, et_createProductPrice, et_createProductWeight, et_createProductDiscount;
     private RadioGroup radio_conditionList;
     private boolean newProductCondition = true;
@@ -32,10 +32,10 @@ public class CreateProductActivity extends AppCompatActivity {
         et_createProductPrice = findViewById(R.id.tv_createProductPrice);
         et_createProductWeight = findViewById(R.id.tv_createProductWeight);
         et_createProductDiscount = findViewById(R.id.tv_createProductDiscount);
-        spinner_createCategory = findViewById(R.id.spinner_crCategory);
-        spinner_createShipment = findViewById(R.id.spinner_crShipment);
+        spinner_createCategory = findViewById(R.id.spinnerCategory);
+        spinner_createShipment = findViewById(R.id.spinnerShipment);
 
-        radio_conditionList = findViewById(R.id.radio_conditionList);
+        radio_conditionList = findViewById(R.id.radioConditionList);
         radio_conditionList.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -49,8 +49,8 @@ public class CreateProductActivity extends AppCompatActivity {
                 }
             }
         });
-        btnCreateProduct = findViewById(R.id.buttonCrProduct);
-        btnCreateProduct.setOnClickListener(new View.OnClickListener() {
+        buttonCreateProduct = findViewById(R.id.buttonCrProduct);
+        buttonCreateProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String accountId = String.valueOf(LoginActivity.getLoggedAccount().id);
@@ -88,7 +88,7 @@ public class CreateProductActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
                                 try {
-                                    Toast.makeText(getApplicationContext(), "Create product successful", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Create product success", Toast.LENGTH_LONG).show();
                                     finish();
 
                                 } catch (Exception e) {
@@ -105,8 +105,8 @@ public class CreateProductActivity extends AppCompatActivity {
                 queue.add(createProductRequest);
             }
         });
-        btnCancelProduct = findViewById(R.id.buttonCancelProduct);
-        btnCancelProduct.setOnClickListener(new View.OnClickListener() {
+        buttonCancelProduct = findViewById(R.id.buttonCancelProduct);
+        buttonCancelProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

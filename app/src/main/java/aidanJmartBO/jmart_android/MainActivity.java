@@ -29,6 +29,7 @@ import java.util.List;
 import aidanJmartBO.jmart_android.model.Product;
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+    public static final String EXTRA_PRODUCTID = "aidanJmartBO.jmart_android.EXTRA_PRODUCTID";
     private static final Gson gson = new Gson();
     MyRecyclerViewAdapter adapter;
     private TabLayout mainTabLayout;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)); //Add divider to each row
-        buttonPrev = findViewById(R.id.btnPrev);
+        buttonPrev = findViewById(R.id.buttonPrev);
         buttonNext = findViewById(R.id.buttonNext);
         buttonGo = findViewById(R.id.buttonGo);
         et_page = findViewById(R.id.tv_page);
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         if(checkUsed.isChecked()){
             checkCondition = checkUsed.getText().toString();
         }
-        buttonApply = findViewById(R.id.btnApply);
+        buttonApply = findViewById(R.id.buttonApply);
         buttonApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
                         cv_product.setVisibility(View.VISIBLE);
                         cv_filter.setVisibility(View.INVISIBLE);
-                        Toast.makeText(getApplicationContext(), "Filtering Succesful", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Filtering Success", Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 queue.add(filterRequest);
             }
         });
-        buttonClear = findViewById(R.id.btnClear);
+        buttonClear = findViewById(R.id.buttonClear);
         buttonClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,7 +216,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
     }
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getApplicationContext(), "Testing click product", Toast.LENGTH_LONG).show();
+        int clickedItemId = adapter.getClickedItemId(position);
+        Intent intent = new Intent(getApplicationContext(), ProductDetailActivity.class);
+        intent.putExtra(EXTRA_PRODUCTID, clickedItemId);
+        startActivity(intent);
     }
 
 

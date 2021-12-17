@@ -8,8 +8,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
+        android:layout_width="349dp"
+        android:layout_height="525dp"
         android:layout_marginTop="20dp"
         app:cardBackgroundColor="#C8C3CF"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="528dp"
             tools:context=".CreateProductActivity">
 
             <TextView
@@ -28,7 +28,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="Create Product"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -124,7 +124,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_createProductCondition">
 
                 <RadioGroup
-                    android:id="@+id/radio_conditionList"
+                    android:id="@+id/radioConditionList"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="20dp"
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:buttonTint="#142204"
+                        android:buttonTint="#673AB7"
                         android:checked="true"
                         android:text="New"
                         android:textSize="15sp"
@@ -151,7 +151,7 @@
                         android:id="@+id/radio_Used"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:buttonTint="#142204"
+                        android:buttonTint="#673AB7"
                         android:text="Used"
                         android:textSize="15sp"
                         android:typeface="normal" />
@@ -161,7 +161,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Spinner
-                android:id="@+id/spinner_crCategory"
+                android:id="@+id/spinnerCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -174,14 +174,14 @@
                 tools:ignore="TouchTargetSizeCheck" />
 
             <Spinner
-                android:id="@+id/spinner_crShipment"
+                android:id="@+id/spinnerShipment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:dropDownWidth="wrap_content"
                 android:entries="@array/shipmentPlans"
                 android:gravity="end"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_createProductShipmentPlan"
-                app:layout_constraintEnd_toEndOf="@+id/spinner_crCategory"
+                app:layout_constraintEnd_toEndOf="@+id/spinnerCategory"
                 app:layout_constraintTop_toTopOf="@+id/tv_createProductShipmentPlan"
                 tools:ignore="TouchTargetSizeCheck" />
 

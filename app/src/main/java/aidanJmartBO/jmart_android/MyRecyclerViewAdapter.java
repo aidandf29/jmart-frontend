@@ -61,6 +61,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
+    int getClickedItemId(int id){ return mData.get(id).id;}
 
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;

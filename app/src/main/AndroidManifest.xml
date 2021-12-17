@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="aidanJmartBO.jmart_android">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jmartandroid"
         android:usesCleartextTraffic="true">
+
         <activity
-            android:name=".MenuMainActivity"
-            android:exported="true" />
+            android:name=".ProductDetailActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"/>
         <activity
             android:name=".MyRecyclerViewAdapter"
             android:exported="true" />
@@ -29,8 +35,19 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".InvoiceHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
+        <activity
+            android:name=".MyRecyclerViewInvoicesAdapter"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".MyRecyclerViewTransactionsAdapter"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

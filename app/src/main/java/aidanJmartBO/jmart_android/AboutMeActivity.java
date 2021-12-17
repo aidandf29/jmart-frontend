@@ -16,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import aidanJmartBO.jmart_android.request.RegisterStoreRequest;
 
 public class AboutMeActivity extends AppCompatActivity {
@@ -24,6 +27,7 @@ public class AboutMeActivity extends AppCompatActivity {
     private TextView tv_userBalance;
     private Button buttonTopUp;
     private Button buttonRegisterStore;
+    private Button btnInvoiceHistory;
     private EditText et_topUpAmount;
     private CardView cv_storeExists;
 
@@ -44,13 +48,22 @@ public class AboutMeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about_me);
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        tv_userName = findViewById(R.id.tv_un);
+        tv_userName = findViewById(R.id.tv_userName);
         tv_userEmail = findViewById(R.id.tv_userEmail);
         tv_userBalance = findViewById(R.id.tv_userBalance);
         et_topUpAmount = findViewById(R.id.tv_topUpAmount);
         tv_userName.setText(LoginActivity.getLoggedAccount().name);
         tv_userEmail.setText(LoginActivity.getLoggedAccount().email);
         tv_userBalance.setText(String.valueOf(LoginActivity.getLoggedAccount().balance));
+
+        btnInvoiceHistory = findViewById(R.id.buttonInvoiceHistory);
+        btnInvoiceHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), InvoiceHistoryActivity.class);
+                startActivity(intent);
+            }
+        });
 
         buttonTopUp = findViewById(R.id.buttonTopUp);
 
@@ -60,15 +73,15 @@ public class AboutMeActivity extends AppCompatActivity {
         et_storeName = findViewById(R.id.et_storeName);
         et_storeAddress = findViewById(R.id.et_storeAddress);
         et_storePhoneNumber = findViewById(R.id.et_storePhoneNumber);
-        buttonRegisterStoreCancel = findViewById(R.id.btnRegisterStoreCancel);
-        buttonRegisterStoreConfirm = findViewById(R.id.btnRegisterStoreConfirm);
+        buttonRegisterStoreCancel = findViewById(R.id.buttonRegisterStoreCancel);
+        buttonRegisterStoreConfirm = findViewById(R.id.buttonRegisterStoreConfirm);
         if(LoginActivity.getLoggedAccount().store != null){
             buttonRegisterStore.setVisibility(View.GONE);
             cv_storeExists.setVisibility(View.VISIBLE);
 
-            tv_storeNameF = findViewById(R.id.tv_sNI);
-            tv_storeAddressF = findViewById(R.id.tv_sAI);
-            tv_storePhoneNumberF = findViewById(R.id.tv_sPNI);
+            tv_storeNameF = findViewById(R.id.tv_storeNameF);
+            tv_storeAddressF = findViewById(R.id.tv_storeAddressF);
+            tv_storePhoneNumberF = findViewById(R.id.tv_storePhoneNumberF);
             tv_storeNameF.setText(LoginActivity.getLoggedAccount().store.name);
             tv_storeAddressF.setText(LoginActivity.getLoggedAccount().store.address);
             tv_storePhoneNumberF.setText(LoginActivity.getLoggedAccount().store.phoneNumber);
@@ -81,6 +94,44 @@ public class AboutMeActivity extends AppCompatActivity {
                 cv_registerStore.setVisibility(View.VISIBLE);
             }
         });
+
+        buttonTopUp = findViewById(R.id.buttonTopUp);
+        buttonTopUp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                String balance = et_topUpAmount.getText().toString();
+                String URL = "http://192.168.10.119:8080/account/"+LoginActivity.getLoggedAccount().id+"/topUp";
+                StringRequest topUpRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        LoginActivity.reloadLoggedAccount(response);
+                        try {
+                            Toast.makeText(getApplicationContext(), "Top Up success", Toast.LENGTH_LONG).show();
+                            finish();
+                            startActivity(getIntent());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "Top Up unsuccessful, error occurred", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), "Top Up unsuccessful, error occurred", Toast.LENGTH_LONG).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams(){
+                        Map<String, String>  params = new HashMap<String, String>();
+                        params.put("balance", balance);
+                        return params;
+                    }
+                };
+                queue.add(topUpRequest);
+            }
+        });
+
         buttonRegisterStoreCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -99,7 +150,7 @@ public class AboutMeActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         LoginActivity.insertLoggedAccountStore(response);
                         try {
-                            Toast.makeText(getApplicationContext(), "Register Store successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Register Store success", Toast.LENGTH_LONG).show();
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } catch (Exception e) {
