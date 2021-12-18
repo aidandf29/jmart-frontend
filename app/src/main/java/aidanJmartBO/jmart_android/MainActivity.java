@@ -27,6 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aidanJmartBO.jmart_android.model.Product;
+/**
+ * Class MainActivity - to control activity_main page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
     public static final String EXTRA_PRODUCTID = "aidanJmartBO.jmart_android.EXTRA_PRODUCTID";
@@ -55,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         setContentView(R.layout.activity_main);
         RequestQueue queue = Volley.newRequestQueue(this);
 
+        //listener for tab selector
         mainTabLayout = findViewById(R.id.mainTabLayout);
         cv_product = findViewById(R.id.cv_product);
         cv_filter = findViewById(R.id.cv_filter);
@@ -93,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         adapter = new MyRecyclerViewAdapter(this, productNames);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)); //Add divider to each row
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         buttonPrev = findViewById(R.id.buttonPrev);
         buttonNext = findViewById(R.id.buttonNext);
         buttonGo = findViewById(R.id.buttonGo);
@@ -122,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
                 fetchProduct(productNames, page, queue, true);
             }
         });
-        //Filter CardView
+
         inputProductName = findViewById(R.id.et_productName);
         inputLowestPrice = findViewById(R.id.et_lowestPrice);
         inputHighestPrice = findViewById(R.id.et_highestPrice);

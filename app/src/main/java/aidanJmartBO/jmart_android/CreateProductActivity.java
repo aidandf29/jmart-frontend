@@ -14,6 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * Class CreateProductActivity - to control activity_create_product page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
 
 public class CreateProductActivity extends AppCompatActivity {
     private Button buttonCreateProduct, buttonCancelProduct;
@@ -35,6 +41,7 @@ public class CreateProductActivity extends AppCompatActivity {
         spinner_createCategory = findViewById(R.id.spinnerCategory);
         spinner_createShipment = findViewById(R.id.spinnerShipment);
 
+        //handle radio butons
         radio_conditionList = findViewById(R.id.radioConditionList);
         radio_conditionList.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -60,7 +67,7 @@ public class CreateProductActivity extends AppCompatActivity {
                 String productDiscount = et_createProductDiscount.getText().toString();
                 String productCategory = spinner_createCategory.getSelectedItem().toString();
                 String productShipment = spinner_createShipment.getSelectedItem().toString();
-
+                // Convert  string value into byte values to stored
                 switch (productShipment) {
                     case "INSTANT":
                         productShipment = String.valueOf(0);

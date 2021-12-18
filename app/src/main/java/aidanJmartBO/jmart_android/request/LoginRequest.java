@@ -6,6 +6,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
+/**
+ * Class CreatePaymentRequest - connect into backend
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class LoginRequest extends StringRequest {
     private static final String URL = "http://192.168.10.119:8080/account/login";
     private final Map<String, String> params;

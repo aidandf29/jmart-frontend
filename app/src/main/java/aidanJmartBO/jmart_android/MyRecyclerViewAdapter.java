@@ -12,6 +12,11 @@ import java.util.List;
 
 import aidanJmartBO.jmart_android.model.Product;
 
+/**
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
     private List<Product> mData;

@@ -7,7 +7,14 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-//Class for registering a new store requests
+/**
+ * Class RegisterStoreRequest - connect into backend
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
+//Class for register new store request
 public class RegisterStoreRequest extends StringRequest{
     private Map<String, String> params;
 

@@ -4,6 +4,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 
+/**
+ * Class RequestFactory - connect into backend
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class RequestFactory {
     private static final String URL_FORMAT_ID = "http://192.168.10.119:8080/%s/%d";
     private static final String URL_FORMAT_PAGE = "http://192.168.10.119:8080/%s/page";

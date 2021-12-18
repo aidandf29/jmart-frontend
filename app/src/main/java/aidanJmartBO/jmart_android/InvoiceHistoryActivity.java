@@ -29,11 +29,19 @@ import java.util.List;
 import aidanJmartBO.jmart_android.model.Payment;
 import aidanJmartBO.jmart_android.model.Product;
 
+/**
+ * Class InvoiceHistoryActivity - to control Invoice_History_activity page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
+
 public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyclerViewInvoicesAdapter.ItemClickListener, MyRecyclerViewTransactionsAdapter.ItemClickListener {
     private static final Gson gson = new Gson();
     MyRecyclerViewInvoicesAdapter adapterInvoices;
     MyRecyclerViewTransactionsAdapter adapterTransactions;
-    //TabSelector
+    //Tab Selector
     private TabLayout invoiceTabLayout;
     private CardView cv_myTransactions, cv_storeInvoices;
 
@@ -49,7 +57,8 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
         invoiceTabLayout = findViewById(R.id.invoiceTabLayout);
         cv_myTransactions = findViewById(R.id.cv_myTransactions);
         cv_storeInvoices = findViewById(R.id.cv_storeInvoices);
-        //Tab Selector Listener
+
+        //Listener Tab Selector
         invoiceTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -74,11 +83,11 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
                 }
             }
             @Override
-            public void onTabReselected(TabLayout.Tab tab) { } //Reselect Tab unused.
+            public void onTabReselected(TabLayout.Tab tab) { }
         });
         try{
             Thread.sleep(500);
-            //Request to fetch Store Invoices
+            //to request fetch store invoices
             List<Payment> storeInvoices = new ArrayList<>();
             List<Product> invoiceProducts = new ArrayList<>();
             pageS = 0;
@@ -97,7 +106,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
 
         try{
             Thread.sleep(500);
-            //Request to fetch My Transactions
+            //to request fetch my transactions
             List<Payment> myTransactions = new ArrayList<>();
             List<Product> transactionProducts = new ArrayList<>();
             pageT = 0;
@@ -108,7 +117,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
             adapterTransactions = new MyRecyclerViewTransactionsAdapter(this, myTransactions, transactionProducts);
             adapterTransactions.setClickListener(this);
             recyclerTransactions.setAdapter(adapterTransactions);
-            recyclerTransactions.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL)); //Add divider to each row
+            recyclerTransactions.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         }catch (Exception e){
             e.printStackTrace();
             finish();
@@ -116,7 +125,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
 
     }
 
-    //Fetch Invoice Request Method
+    //to fetch invoice request method
     public void fetchTransactions(List<Payment> myTransactions, int page, RequestQueue queue, boolean refreshAdapter){
         StringRequest fetchProductsRequest = new StringRequest(Request.Method.GET, "http://192.168.10.119:8080/payment/"+LoginActivity.getLoggedAccount().id+"/purchases/page?page="+page+"&pageSize=10", new Response.Listener<String>() {
             @Override
@@ -147,7 +156,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
         queue.add(fetchProductsRequest);
     }
 
-    //Fetch Invoice Request Method
+    //to fetch invoice request method
     public void fetchInvoices(List<Payment> storeInvoices, int page, RequestQueue queue, boolean refreshAdapter){
         StringRequest fetchProductsRequest = new StringRequest(Request.Method.GET, "http://192.168.10.119:8080/payment/"+LoginActivity.getLoggedAccount().id+"/page?page="+page+"&pageSize=10", new Response.Listener<String>() {
             @Override
@@ -176,7 +185,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
         });
         queue.add(fetchProductsRequest);
     }
-    //Fetch Transactions Product Method
+    //to fetch transactions product method
     public void fetchInvoiceProducts(List<Product> invoiceProducts, int page, RequestQueue queue, boolean refreshAdapter){
         StringRequest fetchInvoiceProductsRequest = new StringRequest(Request.Method.GET, "http://192.168.10.119:8080/product/"+LoginActivity.getLoggedAccount().id+"/page?page="+page+"&pageSize=10", new Response.Listener<String>() {
             @Override
@@ -208,7 +217,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
         queue.add(fetchInvoiceProductsRequest);
     }
 
-    //Fetch Transactions Product Method
+    //to fetch transactions product method
     public void fetchTransactionProducts(List<Product> transactionProducts, int page, RequestQueue queue2, boolean refreshAdapter){
         StringRequest fetchTransactionProductsRequest = new StringRequest(Request.Method.GET, "http://192.168.10.119:8080/product/"+LoginActivity.getLoggedAccount().id+"/purchases/page?page="+page+"&pageSize=10", new Response.Listener<String>() {
             @Override
@@ -241,7 +250,7 @@ public class InvoiceHistoryActivity extends AppCompatActivity implements MyRecyc
     }
 
 
-    //RecycleView Item ClickListener
+    //recycleView item click listener
     @Override
     public void onItemClick(View view, int position) {
         int clickedItemId = adapterTransactions.getClickedItemId(position);

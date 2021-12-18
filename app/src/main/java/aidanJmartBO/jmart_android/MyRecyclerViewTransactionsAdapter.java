@@ -17,8 +17,14 @@ import java.util.List;
 import aidanJmartBO.jmart_android.model.Payment;
 import aidanJmartBO.jmart_android.model.Product;
 
-//Custom Adapter to handle Product RecycleView List
+/**
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
+
 public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRecyclerViewTransactionsAdapter.ViewHolder> {
+    //field
     private static final Gson gson = new Gson();
     private List<Payment> mData;
     private List<Product> transactionProducts;
@@ -26,7 +32,7 @@ public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRe
     private ItemClickListener mClickListener;
 
 
-    // data is passed into the constructor
+    //pass data into constructor
     MyRecyclerViewTransactionsAdapter(Context context, List<Payment> data, List<Product> transactionProducts) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
@@ -34,14 +40,14 @@ public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRe
 
     }
 
-    // inflates the row layout from xml when needed
+    // inflates the row layout
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_row_trans, parent, false);
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each row
+    // binds the data to the TextView
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
@@ -85,7 +91,7 @@ public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRe
         return mData.size();
     }
 
-    //Refresh the list by notify if list data has been updated
+    //Refresh the list
     public void refresh(List<Payment> data) {
         this.mData = data;
         notifyDataSetChanged();
@@ -98,7 +104,7 @@ public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRe
 
 
 
-    // stores and recycles views as they are scrolled off screen
+    // stores and recycles views
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView rv_tv_invoiceNameT;
         TextView rv_tv_invoiceStatusT;
@@ -108,7 +114,6 @@ public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRe
         TextView rv_tv_productIdT;
         TextView rv_tv_invoiceStore;
         TextView rv_tv_invoiceShipmentAddressT;
-        ImageView rv_image_productInvoiceT;
         Button rv_btnCancelTransactionT;
 
         ViewHolder(View itemView) {
@@ -132,20 +137,19 @@ public class MyRecyclerViewTransactionsAdapter extends RecyclerView.Adapter<MyRe
         }
     }
 
-    // convenience method for getting data at click position
+    // convenience method for getting data
     String getItem(int id) {
         return mData.get(id).toString();
     }
     int getClickedItemId(int id){ return mData.get(id).id;}
 
-    // allows clicks events to be caught
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
 
-    }
 }

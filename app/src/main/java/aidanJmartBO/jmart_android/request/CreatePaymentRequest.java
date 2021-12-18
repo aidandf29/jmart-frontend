@@ -5,6 +5,13 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class CreatePaymentRequest - connect into backend
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class CreatePaymentRequest extends StringRequest {
     private Map<String, String> params;
 

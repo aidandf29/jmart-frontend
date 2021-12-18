@@ -15,13 +15,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
 import aidanJmartBO.jmart_android.request.RegisterStoreRequest;
 
+/**
+ * Class AboutMeActivity - to control activity_about_me page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class AboutMeActivity extends AppCompatActivity {
+    //field
     private TextView tv_userName;
     private TextView tv_userEmail;
     private TextView tv_userBalance;
@@ -56,6 +63,7 @@ public class AboutMeActivity extends AppCompatActivity {
         tv_userEmail.setText(LoginActivity.getLoggedAccount().email);
         tv_userBalance.setText(String.valueOf(LoginActivity.getLoggedAccount().balance));
 
+        //to make button that redirect into invoice history
         btnInvoiceHistory = findViewById(R.id.buttonInvoiceHistory);
         btnInvoiceHistory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +103,8 @@ public class AboutMeActivity extends AppCompatActivity {
             }
         });
 
+
+        //handler for topup button
         buttonTopUp = findViewById(R.id.buttonTopUp);
         buttonTopUp.setOnClickListener(new View.OnClickListener() {
 

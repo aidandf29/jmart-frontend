@@ -15,6 +15,13 @@ import org.json.JSONObject;
 
 import aidanJmartBO.jmart_android.request.RegisterRequest;
 
+/**
+ * Class RegisterActivity - to control activity_Register page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -33,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     if(jsonObject != null) {
                         Toast.makeText(RegisterActivity.this, "Register Successful", Toast.LENGTH_SHORT).show();
+
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }

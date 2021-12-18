@@ -9,8 +9,14 @@ import java.util.Map;
 
 import aidanJmartBO.jmart_android.model.ProductCategory;
 
+/**
+ * Class CreatePaymentRequest - connect into backend
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
 
-//Class for creating new product Requests
+//Class for creating new product Request
 public class CreateProductRequest extends StringRequest {
     private Map<String, String> params;
 

@@ -25,6 +25,13 @@ import aidanJmartBO.jmart_android.model.Product;
 import aidanJmartBO.jmart_android.request.CreatePaymentRequest;
 import aidanJmartBO.jmart_android.request.RequestFactory;
 
+/**
+ * Class PaymentActivity - to control activity_payment page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class PaymentActivity extends AppCompatActivity {
     public static final String EXTRA_AMOUNT = "aidanJmartBO.jmart_android.EXTRA_AMOUNT";
     public static final String EXTRA_SHIPMENTADDRESS = "aidanJmartBO.jmart_android.EXTRA_SHIPMENTADDRESS";
@@ -56,8 +63,6 @@ public class PaymentActivity extends AppCompatActivity {
         tv_sellerId = findViewById(R.id.tv_sellerId);
         tv_totalPrice = findViewById(R.id.tv_totalPrice);
         tv_balancePayment = findViewById(R.id.tv_balancePayment);
-//        tv_finalBalance = findViewById(R.id.tv_finalBalance);
-//        tv_weightPayment = findViewById(R.id.tv_weightPayment);
         tv_shipmentPayment = findViewById(R.id.tv_shipmentPayment);
 
         et_shipmentAddress = findViewById(R.id.tv_shipmentAddress);
@@ -100,8 +105,6 @@ public class PaymentActivity extends AppCompatActivity {
                 tv_totalPrice.setText(String.valueOf(amount * (productPrice - productDiscount)));
                 tv_balancePayment.setText(String.valueOf(currentLogged.balance));
                 shipmentPlans = fetchedProduct.shipmentPlans;
-//            tv_finalBalance.setText(String.valueOf(currentLogged.balance - (productPrice - productDiscount)));
-//            tv_weightPayment.setText(String.valueOf(fetchedProduct.weight));
                 switch (shipmentPlans){
                     case 0:
                         tv_shipmentPayment.setText("INSTANT");

@@ -20,6 +20,13 @@ import com.google.gson.Gson;
 import aidanJmartBO.jmart_android.model.Product;
 import aidanJmartBO.jmart_android.request.RequestFactory;
 
+/**
+ * Class ProductDetailActivity - to control activity_product_detail page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class ProductDetailActivity extends AppCompatActivity {
     public static final String EXTRA_PRICE = "samuelJmartRK.jmart_android.EXTRA_PRICE";
     private Product fetchedProduct;
@@ -35,7 +42,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
         RequestQueue queue = Volley.newRequestQueue(this);
-        //Get passed product Id variable of clicked item from MainActivity
+        //passed product Id variable of clicked item from MainActivity
         Intent intent = getIntent();
         int productId = intent.getIntExtra(MainActivity.EXTRA_PRODUCTID, 0);
 

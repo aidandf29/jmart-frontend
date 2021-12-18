@@ -23,10 +23,18 @@ import aidanJmartBO.jmart_android.model.Account;
 import aidanJmartBO.jmart_android.model.Store;
 import aidanJmartBO.jmart_android.request.LoginRequest;
 
+/**
+ * Class LogintActivity - to control activity_login page
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
 public class LoginActivity extends AppCompatActivity implements Response.Listener<String>, Response.ErrorListener {
     private static final Gson gson = new Gson();
     private static Account loggedAccount;
 
+    //to get the currently logged account
     public static Account getLoggedAccount(){
         return loggedAccount;
     }
@@ -108,9 +116,12 @@ public class LoginActivity extends AppCompatActivity implements Response.Listene
         startActivity(intent);
     }
 
+    //method to reload the currently logged account
     public static void reloadLoggedAccount(String response){
         loggedAccount = gson.fromJson(response, Account.class);
     }
+
+    //method to insert information about created Store data into logged account;
     public static void insertLoggedAccountStore(String response){
         Store newStore = gson.fromJson(response, Store.class);
         loggedAccount.store = newStore;

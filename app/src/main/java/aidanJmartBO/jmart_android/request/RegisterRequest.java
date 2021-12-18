@@ -6,7 +6,14 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-//Class for Register Requests
+/**
+ * Class CreatePaymentRequest - connect into backend
+ *
+ * @author Muh. Aidan Daffa J
+ * @version (version number or date here)
+ */
+
+//Class for Register Request
 public class RegisterRequest extends StringRequest{
     private static final String URL = "http://192.168.10.119:8080/account/register";
     private Map<String, String> params;
